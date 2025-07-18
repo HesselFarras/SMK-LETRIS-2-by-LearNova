@@ -38,6 +38,7 @@ class FasilitasResource extends Resource
             FileUpload::make('foto')
                 ->label('Foto')
                 ->image()
+                ->imagePreviewHeight('250')
                 ->directory('fasilitas-photos')
                 ->nullable(),
         ]);

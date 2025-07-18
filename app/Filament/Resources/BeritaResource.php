@@ -38,6 +38,7 @@ class BeritaResource extends Resource
             FileUpload::make('foto')
                 ->label('Foto Berita')
                 ->image()
+                ->imagePreviewHeight('250')
                 ->directory('berita-foto')
                 ->nullable(),
 

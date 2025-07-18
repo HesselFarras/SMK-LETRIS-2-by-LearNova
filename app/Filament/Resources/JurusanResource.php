@@ -29,7 +29,7 @@ class JurusanResource extends Resource
             TextInput::make('kode')->required()->maxLength(10),
             TextInput::make('nama')->required()->maxLength(255),
             Textarea::make('deskripsi')->rows(5),
-            FileUpload::make('gambar')->directory('jurusan')->image(),
+            FileUpload::make('gambar')->directory('jurusan')->image()->imagePreviewHeight('250'),
         ]);
     }
 

@@ -13,32 +13,6 @@
         </div>
     </section>
 
-
-    <!-- Statistik Sekolah -->
-    <section class="bg-gradient-to-br from-orange-50 to-amber-50 py-16">
-        <div class="container mx-auto px-4 text-center">
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                <!-- Jumlah Siswa -->
-                <div class="bg-[#f6ecd0] rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
-                    <div class="text-5xl font-extrabold text-blue-600 mb-2">700+</div>
-                    <p class="text-gray-700 font-semibold">Jumlah Siswa</p>
-                </div>
-
-                <!-- Jumlah Guru -->
-                <div class="bg-[#f6ecd0] rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
-                    <div class="text-5xl font-extrabold text-blue-600 mb-2">50+</div>
-                    <p class="text-gray-700 font-semibold">Jumlah Guru</p>
-                </div>
-
-                <!-- Jumlah Jurusan -->
-                <div class="bg-[#f6ecd0] rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
-                    <div class="text-5xl font-extrabold text-blue-600 mb-2">6</div>
-                    <p class="text-gray-700 font-semibold">Jumlah Jurusan</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Info Boxes -->
     <section class="py-12 bg-gradient-to-br from-amber-50 to-orange-50">
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-4 reveal opacity-0 translate-y-8 transition-all duration-700">
@@ -59,6 +33,32 @@
             </div>
         </div>
     </section>
+
+    <!-- Statistik Sekolah -->
+    <section class="bg-gradient-to-br from-orange-50 to-amber-50 py-16">
+        <div class="container mx-auto px-4 text-center reveal opacity-0 translate-y-8 transition-all duration-700">
+            <!-- <h2 class="text-3xl font-bold mb-10 text-black">Statistik Sekolah</h2> -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <!-- Jumlah Siswa -->
+                <div class="bg-[#f6ecd0] rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
+                    <div class="text-5xl font-extrabold text-blue-600 mb-2">700+</div>
+                    <p class="text-gray-700 font-semibold">Jumlah Siswa</p>
+                </div>
+
+                <!-- Jumlah Guru -->
+                <div class="bg-[#f6ecd0] rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
+                    <div class="text-5xl font-extrabold text-blue-600 mb-2">50+</div>
+                    <p class="text-gray-700 font-semibold">Jumlah Guru</p>
+                </div>
+
+                <!-- Jumlah Jurusan -->
+                <div class="bg-[#f6ecd0] rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
+                    <div class="text-5xl font-extrabold text-blue-600 mb-2">6</div>
+                    <p class="text-gray-700 font-semibold">Jumlah Jurusan</p>
+                </div>
+            </div>
+        </div>
+    </section> 
 
     <!-- Fasilitas Carousel -->
     <section id="fasilitas" class="py-12 px-6 bg-gradient-to-br from-orange-50 to-amber-50">

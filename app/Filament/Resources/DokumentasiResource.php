@@ -31,6 +31,7 @@ class DokumentasiResource extends Resource
             Textarea::make('deskripsi')->nullable(),
             FileUpload::make('foto')
                 ->image()
+                ->imagePreviewHeight('250')
                 ->directory('dokumentasi') // akan disimpan di storage/app/public/dokumentasi
                 ->required(),
         ]);

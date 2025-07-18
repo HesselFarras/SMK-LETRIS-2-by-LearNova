@@ -35,6 +35,7 @@ class GuruResource extends Resource
 
             FileUpload::make('foto')
                 ->image()
+                ->imagePreviewHeight('250')
                 ->directory('guru-photos')
                 ->label('Foto')
                 ->nullable(),
