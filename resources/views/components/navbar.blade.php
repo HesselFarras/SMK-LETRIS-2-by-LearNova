@@ -12,7 +12,7 @@
         </button>
 
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex space-x-6">
+        <nav class="hidden md:flex space-x-6 font-bold">
             <a href="/" class="hover:underline">Home</a>
             <a href="{{ route('tentang') }}" class="hover:underline">Profile</a>
             <a href="{{ route('berita') }}" class="hover:underline">Berita</a>

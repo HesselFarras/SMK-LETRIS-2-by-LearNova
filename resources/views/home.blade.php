@@ -19,20 +19,20 @@
         <div class="container mx-auto px-4 text-center">
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                 <!-- Jumlah Siswa -->
-                <div class="bg-[#faf3e0] rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
+                <div class="bg-[#f6ecd0] rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
                     <div class="text-5xl font-extrabold text-blue-600 mb-2">700+</div>
                     <p class="text-gray-700 font-semibold">Jumlah Siswa</p>
                 </div>
 
                 <!-- Jumlah Guru -->
-                <div class="bg-[#faf3e0] rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
+                <div class="bg-[#f6ecd0] rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
                     <div class="text-5xl font-extrabold text-blue-600 mb-2">50+</div>
                     <p class="text-gray-700 font-semibold">Jumlah Guru</p>
                 </div>
 
                 <!-- Jumlah Jurusan -->
-                <div class="bg-[#faf3e0] rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
-                    <div class="text-5xl font-extrabold text-blue-600 mb-2">7</div>
+                <div class="bg-[#f6ecd0] rounded-lg shadow-md p-6 hover:shadow-xl transition duration-300">
+                    <div class="text-5xl font-extrabold text-blue-600 mb-2">6</div>
                     <p class="text-gray-700 font-semibold">Jumlah Jurusan</p>
                 </div>
             </div>
@@ -42,17 +42,17 @@
     <!-- Info Boxes -->
     <section class="py-12 bg-gradient-to-br from-amber-50 to-orange-50">
         <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-4 reveal opacity-0 translate-y-8 transition-all duration-700">
-            <div class="bg-[#faf3e0] p-6 shadow rounded">
+            <div class="bg-[#f6ecd0] p-6 shadow rounded">
                 <h2 class="text-xl font-semibold mb-2">About</h2>
                 <p>SMK Letris Indonesia 2 adalah sekolah yang berkomitmen mencetak lulusan kompeten di bidangnya.</p>
                 <a href="{{ route('tentang') }}" class="text-blue-500 mt-2 inline-block">Learn More</a>
             </div>
-            <div class="bg-[#faf3e0] p-6 shadow rounded">
+            <div class="bg-[#f6ecd0] p-6 shadow rounded">
                 <h2 class="text-xl font-semibold mb-2">Fasilitas</h2>
                 <p>Fasilitas lengkap mulai dari ruang kelas modern, laboratorium, perpustakaan dan lainnya.</p>
                 <a href="{{ route('tentang') }}" class="text-blue-500 mt-2 inline-block">Learn More</a>
             </div>
-            <div class="bg-[#faf3e0] p-6 shadow rounded">
+            <div class="bg-[#f6ecd0] p-6 shadow rounded">
                 <h2 class="text-xl font-semibold mb-2">Informasi & Berita</h2>
                 <p>Ikuti berita dan update terbaru mengenai kegiatan SMK Letris Indonesia 2.</p>
                 <a href="{{ route('berita') }}" class="text-blue-500 mt-2 inline-block">Learn More</a>
@@ -64,7 +64,7 @@
     <section id="fasilitas" class="py-12 px-6 bg-gradient-to-br from-orange-50 to-amber-50">
         <div id="carousel" class="flex overflow-x-auto gap-4 scroll-smooth reveal opacity-0 translate-y-8 transition-all duration-700">
         @foreach ($fasilitas as $item)
-            <div class="min-w-[300px] bg-[#faf3e0] shadow rounded overflow-hidden">
+            <div class="min-w-[300px] bg-[#f6ecd0] shadow rounded overflow-hidden">
                 <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama }}" class="w-full h-48 object-cover">
                 <div class="p-4 font-semibold text-center">{{ $item->nama }}</div>
             </div>
@@ -93,7 +93,7 @@
         <h2 class="text-2xl font-bold mb-6">News & Updates</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach ($berita->take(3) as $item)
-                <div class="bg-[#faf3e0] shadow rounded p-4">
+                <div class="bg-[#f6ecd0] shadow rounded p-4">
                     <img src="{{ asset('storage/' . $item->foto) }}" class="mb-2 w-full h-40 object-cover rounded" alt="{{ $item->judul }}">
                     <h3 class="font-semibold text-lg">{{ $item->judul }}</h3>
                     <p class="text-sm text-gray-600">{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>

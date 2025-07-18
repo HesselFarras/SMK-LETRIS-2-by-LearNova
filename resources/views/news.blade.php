@@ -10,7 +10,7 @@
 
         {{-- Hero News --}}
         @if ($berita->first())
-        <div class="bg-[#faf3e0] w-full mb-10 reveal opacity-0 translate-y-8 transition-all duration-700 border px-3 py-3 shadow rounded">
+        <div class="bg-[#f6ecd0] w-full mb-10 reveal opacity-0 translate-y-8 transition-all duration-700 border px-3 py-3 shadow rounded">
             <img src="{{ asset('storage/' . $berita->first()->foto) }}" class="w-full h-80 object-cover rounded-lg" alt="{{ $berita->first()->judul }}">
             <h3 class="text-xl font-bold mt-4">{{ $berita->first()->judul }}</h3>
             <p class="text-sm text-gray-500">{{ \Carbon\Carbon::parse($berita->first()->tanggal)->translatedFormat('d F Y') }}</p>
@@ -22,7 +22,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 reveal opacity-0 translate-y-8 transition-all duration-700">
             {{-- Large News Item --}}
             @if ($berita->count() > 1)
-            <div class="md:col-span-2 flex border p-4 bg-[#faf3e0]">
+            <div class="md:col-span-2 flex border p-4 bg-[#f6ecd0]">
                 <div class="w-1/2 pr-3">
                     <h3 class="font-bold">{{ $berita[1]->judul }}</h3>
                     <p class="text-sm text-gray-500">{{ \Carbon\Carbon::parse($berita[1]->tanggal)->translatedFormat('d F Y') }}</p>
@@ -36,7 +36,7 @@
 
             {{-- 4 Small News Items with Popup --}}
             @foreach ($berita->skip(2)->take(4) as $item)
-            <div x-data="{ open: false }" class="relative border p-4 bg-[#faf3e0] reveal opacity-0 translate-y-8 transition-all duration-700">
+            <div x-data="{ open: false }" class="relative border p-4 bg-[#f6ecd0] reveal opacity-0 translate-y-8 transition-all duration-700">
                 <div @click="open = true" class="cursor-pointer">
                     <div class="h-32 mb-2">
                         <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->judul }}" class="w-full h-full object-cover rounded">

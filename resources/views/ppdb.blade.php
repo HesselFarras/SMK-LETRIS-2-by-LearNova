@@ -21,7 +21,7 @@
         <h2 class="text-2xl font-bold mb-4">Dokumentasi</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             @foreach ($dokumentasi as $item)
-            <div class="bg-[#faf3e0] shadow rounded p-4">
+            <div class="bg-[#f6ecd0] shadow rounded p-4">
                 <div class="h-40 mb-4">
                     <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->judul }}" class="w-full h-full object-cover rounded">
                 </div>
@@ -39,7 +39,7 @@
             <h2 class="text-2xl font-bold mb-6">News & Updates</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 @foreach ($berita->take(3) as $item)
-                <div class="bg-[#faf3e0] shadow rounded p-4">
+                <div class="bg-[#f6ecd0] shadow rounded p-4">
                     <img src="{{ asset('storage/' . $item->foto) }}" class="mb-2 w-full h-40 object-cover rounded" alt="{{ $item->judul }}">
                     <h3 class="font-semibold text-lg">{{ $item->judul }}</h3>
                     <p class="text-sm text-gray-600">{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>

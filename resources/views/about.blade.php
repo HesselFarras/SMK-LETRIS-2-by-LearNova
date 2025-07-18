@@ -49,7 +49,7 @@
             <h2 class="text-2xl font-bold mb-8">Fasilitas</h2>
             <div class="grid md:grid-cols-3 gap-6 reveal opacity-0 translate-y-8 transition-all duration-700">
                 @foreach ($fasilitas as $index => $item)
-                <div class="bg-[#faf3e0] rounded shadow p-4 {{ $index > 2 ? 'hidden' : '' }} fasilitas-item">
+                <div class="bg-[#f6ecd0] rounded shadow p-4 {{ $index > 2 ? 'hidden' : '' }} fasilitas-item">
                     <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama }}" class="w-full h-40 object-cover rounded mb-3">
                     <h3 class="font-bold text-lg mb-2">{{ $item->nama }}</h3>
                     <p class="text-sm text-gray-600">
@@ -76,7 +76,7 @@
             
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 reveal opacity-0 translate-y-8 transition-all duration-700" id="guruGrid">
                 @foreach ($gurus as $index => $guru)
-                <div class="bg-[#faf3e0] rounded p-4 text-center guru-item {{ $index >= 4 ? 'hidden' : '' }}">
+                <div class="bg-[#f6ecd0] rounded p-4 text-center guru-item {{ $index >= 4 ? 'hidden' : '' }}">
                     <div class="w-full relative pb-[75%] bg-gray-200 mb-3 overflow-hidden rounded">
                         <img src="{{ asset('storage/' . $guru->foto) }}" alt="{{ $guru->nama }}" class="absolute top-0 left-0 w-full h-full object-cover">
                     </div>
@@ -134,7 +134,7 @@
         <h2 class="text-2xl font-bold mb-6">News & Updates</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach ($berita->take(3) as $item)
-            <div class="bg-[#faf3e0] shadow rounded p-4">
+            <div class="bg-[#f6ecd0] shadow rounded p-4">
                 <img src="{{ asset('storage/' . $item->foto) }}" class="mb-2 w-full h-40 object-cover rounded" alt="{{ $item->judul }}">
                 <h3 class="font-semibold text-lg">{{ $item->judul }}</h3>
                 <p class="text-sm text-gray-600">{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>

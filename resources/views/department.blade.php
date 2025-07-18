@@ -15,7 +15,7 @@
         <div class="grid md:grid-cols-3 gap-8">
             @foreach($jurusan as $item)
                 <div 
-                    class="bg-[#faf3e0] p-6 rounded-lg shadow-md cursor-pointer hover:shadow-xl reveal opacity-0 translate-y-8 transition-all duration-700" 
+                    class="bg-[#f6ecd0] p-6 rounded-lg shadow-md cursor-pointer hover:shadow-xl reveal opacity-0 translate-y-8 transition-all duration-700" 
                     @click="open = '{{ $item->kode }}'"
                 >
                     <img src="{{ asset('storage/' . $item->gambar) }}" alt="{{ $item->nama }}" class="w-full h-48 object-cover rounded mb-4">
@@ -115,7 +115,7 @@
         <h2 class="text-2xl font-bold mb-6">News & Updates</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach ($berita->take(3) as $item)
-                <div class="bg-[#faf3e0] shadow rounded p-4">
+                <div class="bg-[#f6ecd0] shadow rounded p-4">
                     <img src="{{ asset('storage/' . $item->foto) }}" class="mb-2 w-full h-40 object-cover rounded" alt="{{ $item->judul }}">
                     <h3 class="font-semibold text-lg">{{ $item->judul }}</h3>
                     <p class="text-sm text-gray-600">{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
