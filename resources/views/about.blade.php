@@ -49,11 +49,11 @@
             <h2 class="text-2xl font-bold mb-8">Fasilitas</h2>
             <div class="grid md:grid-cols-3 gap-6 reveal opacity-0 translate-y-8 transition-all duration-700">
                 @foreach ($fasilitas as $index => $item)
-                <div class="bg-[#f6ecd0] rounded shadow p-4 {{ $index > 2 ? 'hidden' : '' }} fasilitas-item">
+                <div class="bg-[#f6ecd0] rounded shadow p-4 {{ $index > 2 ? 'hidden' : '' }} fasilitas-item flex flex-col items-center">
                     <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->nama }}" class="w-full h-40 object-cover rounded mb-3">
                     <h3 class="font-bold text-lg mb-2">{{ $item->nama }}</h3>
-                    <p class="text-sm text-gray-600">
-                        {{ $item->deskripsi ?? 'Fasilitas kami lengkap dan mendukung pembelajaran modern.' }}
+                    <p class="text-sm text-gray-600 text-center">
+                        {{ $item->deskripsi }}
                     </p>
                 </div>
                 @endforeach
