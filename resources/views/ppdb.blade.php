@@ -16,6 +16,110 @@
             </div>
         </div>
     </section>
+
+    <!-- Rincian Biaya -->
+
+    <section class="my-12 bg-[#f6ecd0] py-10 px-4 rounded shadow container mx-auto reveal opacity-0 translate-y-8 transition-all duration-700">
+        <header class="mb-6 text-center">
+            <h2 class="text-2xl font-bold">Rincian Biaya Masuk SMK Letris Indonesia TA 2025/2026</h2>
+        </header>
+        <div class="overflow-x-auto">
+            <table class="table-auto w-full border border-black text-sm">
+                <thead class="bg-orange-50">
+                    <tr>
+                        <th class="border px-2 py-1">No</th>
+                        <th class="border px-2 py-1">Komponen</th>
+                        <th class="border px-2 py-1">AP</th>
+                        <th class="border px-2 py-1">AP Bilingual</th>
+                        <th class="border px-2 py-1">MM</th>
+                        <th class="border px-2 py-1">MM Bilingual</th>
+                        <th class="border px-2 py-1">TJKT</th>
+                        <th class="border px-2 py-1">RPL</th>
+                        <th class="border px-2 py-1">OSP</th>
+                    </tr>
+                </thead>
+                <tbody class="bg-orange-50">
+                    <tr>
+                        <td class="border px-2 py-1">1</td>
+                        <td class="border px-2 py-1">SPP Juli 2025</td>
+                        <td class="border px-2 py-1">Rp 400.000</td>
+                        <td class="border px-2 py-1">Rp 450.000</td>
+                        <td class="border px-2 py-1">Rp 400.000</td>
+                        <td class="border px-2 py-1">Rp 450.000</td>
+                        <td class="border px-2 py-1">Rp 400.000</td>
+                        <td class="border px-2 py-1">Rp 400.000</td>
+                        <td class="border px-2 py-1">Rp 400.000</td>
+                    </tr>
+                    <tr>
+                        <td class="border px-2 py-1">2</td>
+                        <td class="border px-2 py-1">Dana Sumbangan Pendidikan</td>
+                        <td class="border px-2 py-1">Rp 2.150.000</td>
+                        <td class="border px-2 py-1">Rp 2.150.000</td>
+                        <td class="border px-2 py-1">Rp 2.150.000</td>
+                        <td class="border px-2 py-1">Rp 2.150.000</td>
+                        <td class="border px-2 py-1">Rp 2.150.000</td>
+                        <td class="border px-2 py-1">Rp 2.150.000</td>
+                        <td class="border px-2 py-1">Rp 2.150.000</td>
+                    </tr>
+                    <tr>
+                        <td class="border px-2 py-1">3</td>
+                        <td class="border px-2 py-1">OSIS + TTEK</td>
+                        <td class="border px-2 py-1">Rp 100.000</td>
+                        <td class="border px-2 py-1">Rp 100.000</td>
+                        <td class="border px-2 py-1">Rp 100.000</td>
+                        <td class="border px-2 py-1">Rp 100.000</td>
+                        <td class="border px-2 py-1">Rp 100.000</td>
+                        <td class="border px-2 py-1">Rp 100.000</td>
+                        <td class="border px-2 py-1">Rp 100.000</td>
+                    </tr>
+                    <tr>
+                        <td class="border px-2 py-1">4</td>
+                        <td class="border px-2 py-1">Ekskul Penunjang</td>
+                        <td class="border px-2 py-1">Rp 250.000</td>
+                        <td class="border px-2 py-1">Rp 250.000</td>
+                        <td class="border px-2 py-1">Rp 250.000</td>
+                        <td class="border px-2 py-1">Rp 250.000</td>
+                        <td class="border px-2 py-1">Rp 250.000</td>
+                        <td class="border px-2 py-1">Rp 250.000</td>
+                        <td class="border px-2 py-1">Rp 250.000</td>
+                    </tr>
+                    <tr>
+                        <td class="border px-2 py-1">5</td>
+                        <td class="border px-2 py-1">MPLS + LKS</td>
+                        <td class="border px-2 py-1">Rp 200.000</td>
+                        <td class="border px-2 py-1">Rp 200.000</td>
+                        <td class="border px-2 py-1">Rp 200.000</td>
+                        <td class="border px-2 py-1">Rp 200.000</td>
+                        <td class="border px-2 py-1">Rp 200.000</td>
+                        <td class="border px-2 py-1">Rp 200.000</td>
+                        <td class="border px-2 py-1">Rp 200.000</td>
+                    </tr>
+                    <tr>
+                        <td class="border px-2 py-1">6</td>
+                        <td class="border px-2 py-1">PAS (Penilaian Akhir Semester)</td>
+                        <td class="border px-2 py-1">Rp 150.000</td>
+                        <td class="border px-2 py-1">Rp 150.000</td>
+                        <td class="border px-2 py-1">Rp 150.000</td>
+                        <td class="border px-2 py-1">Rp 150.000</td>
+                        <td class="border px-2 py-1">Rp 150.000</td>
+                        <td class="border px-2 py-1">Rp 150.000</td>
+                        <td class="border px-2 py-1">Rp 150.000</td>
+                    </tr>
+                    <tr class="bg-orange-50 font-semibold">
+                        <td class="border px-2 py-1" colspan="2">Total Biaya</td>
+                        <td class="border px-2 py-1">Rp 3.250.000</td>
+                        <td class="border px-2 py-1">Rp 3.300.000</td>
+                        <td class="border px-2 py-1">Rp 3.250.000</td>
+                        <td class="border px-2 py-1">Rp 3.300.000</td>
+                        <td class="border px-2 py-1">Rp 3.250.000</td>
+                        <td class="border px-2 py-1">Rp 3.250.000</td>
+                        <td class="border px-2 py-1">Rp 3.250.000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</section>
+
     
     <section class=" container mx-auto px-4 my-10 reveal opacity-0 translate-y-8 transition-all duration-700 ">
         <h2 class="text-2xl font-bold mb-4">Dokumentasi</h2>
