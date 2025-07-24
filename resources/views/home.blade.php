@@ -89,7 +89,7 @@
     </section>
 <!-- News & Updates -->
 <section id="berita" class="py-12 mx-auto bg-gradient-to-br from-orange-50 to-amber-50">
-    <div class="container mx-auto reveal opacity-0 translate-y-8 transition-all duration-700">
+    <div class="container mx-auto px-4 reveal opacity-0 translate-y-8 transition-all duration-700">
         <h2 class="text-2xl font-bold mb-6">News & Updates</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             @foreach ($berita->take(3) as $item)
