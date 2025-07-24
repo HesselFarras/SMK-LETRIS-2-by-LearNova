@@ -46,7 +46,7 @@
     <!-- Fasilitas -->
     <section class="py-12 bg-gradient-to-br from-orange-50 to-amber-50">
         <div class="container mx-auto px-4 reveal opacity-0 translate-y-8 transition-all duration-700">
-            <h2 class="text-2xl font-bold mb-8">Fasilitas</h2>
+            <h2 class="text-2xl font-bold mb-8 text-center">Fasilitas</h2>
             <div class="grid md:grid-cols-3 gap-6 reveal opacity-0 translate-y-8 transition-all duration-700">
                 @foreach ($fasilitas as $index => $item)
                 <div class="bg-[#f6ecd0] rounded shadow p-4 {{ $index > 2 ? 'hidden' : '' }} fasilitas-item flex flex-col items-center">
@@ -96,7 +96,7 @@
     
     <section class="bg-gradient-to-br from-orange-50 to-amber-50 py-12">
         <div class="container mx-auto px-4 reveal opacity-0 translate-y-8 transition-all duration-700">
-            <h2 class="text-2xl md:text-3xl font-bold text-center mb-10 uppercase">Lokasi SMK LETRIS 2 INDONESIA</h2>
+            <h2 class="text-2xl md:text-3xl font-bold mb-10 uppercase text-center">Lokasi SMK LETRIS 2 INDONESIA</h2>
             
             <div class="grid md:grid-cols-2 gap-8 reveal opacity-0 translate-y-8 transition-all duration-700">
                 <!-- Kontak -->
@@ -129,7 +129,7 @@
 
 
 <!-- News & Updates -->
-<section id="berita" class="py-12 px-24 bg-gradient-to-br from-amber-50 to-orange-50">
+<section id="berita" class="py-12 mx-auto bg-gradient-to-br from-amber-50 to-orange-50">
     <div class="container mx-auto reveal opacity-0 translate-y-8 transition-all duration-700">
         <h2 class="text-2xl font-bold mb-6">News & Updates</h2>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">

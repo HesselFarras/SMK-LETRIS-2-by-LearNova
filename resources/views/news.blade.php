@@ -4,40 +4,124 @@
 <script src="//unpkg.com/alpinejs" defer></script>
 <script src="https://cdn.tailwindcss.com"></script>
 
-<section class="bg-gradient-to-br from-amber-50 to-orange-50 py-10">
+<section class="bg-gradient-to-br from-amber-50 to-orange-50 py-4">
     <div class="container mx-auto px-4 reveal opacity-0 translate-y-8 transition-all duration-700">
         <h2 class="text-2xl font-bold text-center mb-10">News & Updates</h2>
 
-        {{-- Hero News --}}
+        {{-- Hero News with Popup --}}
         @if ($berita->first())
-        <div class="bg-[#f6ecd0] w-full mb-10 reveal opacity-0 translate-y-8 transition-all duration-700 border px-3 py-3 shadow rounded">
-            <img src="{{ asset('storage/' . $berita->first()->foto) }}" class="w-full h-80 object-cover rounded-lg" alt="{{ $berita->first()->judul }}">
-            <h3 class="text-xl font-bold mt-4">{{ $berita->first()->judul }}</h3>
-            <p class="text-sm text-gray-500">{{ \Carbon\Carbon::parse($berita->first()->tanggal)->translatedFormat('d F Y') }}</p>
-            <p class="text-sm text-gray-700 mt-2 line-clamp-3">{!! Str::limit(strip_tags($berita->first()->isi), 1000) !!}</p>
+        <div x-data="{ open: false }" class="w-full mb-10 reveal opacity-0 translate-y-8 transition-all duration-700 shadow-xl rounded-xl overflow-hidden bg-white">
+            <div @click="open = true" class="cursor-pointer group">
+                <!-- Full Hero Image -->
+                <div class="relative overflow-hidden">
+                    <img src="{{ asset('storage/' . $berita->first()->foto) }}" 
+                        class="w-full h-[50vh] sm:h-[60vh] md:h-[70vh] lg:h-[80vh] object-cover transition-transform duration-500 group-hover:scale-105" 
+                        alt="{{ $berita->first()->judul }}">
+                    <!-- Gradient overlay for better text readability -->
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    
+                    <!-- Content overlay on image -->
+                    <div class="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 text-white">
+                        <div class="max-w-4xl">
+                            <h3 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4 leading-tight">{{ $berita->first()->judul }}</h3>
+                            <p class="text-sm sm:text-base md:text-lg opacity-90 mb-2 sm:mb-3">{{ \Carbon\Carbon::parse($berita->first()->tanggal)->translatedFormat('d F Y') }}</p>
+                            <p class="text-sm sm:text-base md:text-lg opacity-90 line-clamp-2 sm:line-clamp-3 max-w-3xl leading-relaxed">{!! Str::limit(strip_tags($berita->first()->isi), 200) !!}</p>
+                            <!-- Read more indicator -->
+                            <div class="flex items-center mt-3 sm:mt-4 text-sm sm:text-base text-amber-300 font-medium">
+                                <span>Baca Selengkapnya</span>
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hero Popup Modal -->
+            <div 
+                x-show="open" 
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 scale-90"
+                x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-90"
+                class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center p-2 sm:p-4 overflow-y-auto"
+                style="display: none;"
+                @click.self="open = false">
+                <div class="bg-white w-full max-w-4xl rounded-lg shadow-2xl relative my-4 sm:my-8 min-h-[80vh] max-h-none flex flex-col">
+                    <div class="flex justify-between items-center p-4 border-b sticky top-0 bg-white z-10 rounded-t-lg">
+                        <h3 class="text-lg sm:text-xl font-bold text-gray-800 pr-8 line-clamp-2">{{ $berita->first()->judul }}</h3>
+                        <button @click="open = false" class="text-3xl text-gray-600 hover:text-red-600 transition-colors duration-200 absolute top-3 right-4 w-8 h-8 flex items-center justify-center">&times;</button>
+                    </div>
+                    <div class="overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                        <img src="{{ asset('storage/' . $berita->first()->foto) }}" class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover" alt="{{ $berita->first()->judul }}">
+                        <div class="p-4 sm:p-6 lg:p-8">
+                            <p class="text-sm text-gray-500 mb-6 font-medium">{{ \Carbon\Carbon::parse($berita->first()->tanggal)->translatedFormat('d F Y') }}</p>
+                            <div class="text-gray-700 leading-relaxed text-sm sm:text-base lg:text-lg space-y-4">
+                                {!! nl2br(e($berita->first()->isi)) !!}
+                            </div>
+                        </div>
+                        <div class="h-8"></div> <!-- Extra space at bottom -->
+                    </div>
+                </div>
+            </div>
         </div>
         @endif
 
         {{-- Grid News --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 reveal opacity-0 translate-y-8 transition-all duration-700">
-            {{-- Large News Item --}}
+            {{-- Large News Item with Popup --}}
             @if ($berita->count() > 1)
-            <div class="md:col-span-2 flex border p-4 bg-[#f6ecd0]">
-                <div class="w-1/2 pr-3">
-                    <h3 class="font-bold">{{ $berita[1]->judul }}</h3>
-                    <p class="text-sm text-gray-500">{{ \Carbon\Carbon::parse($berita[1]->tanggal)->translatedFormat('d F Y') }}</p>
-                    <p class="text-xs text-gray-700 mt-1 line-clamp-4">{!! Str::limit(strip_tags($berita[1]->isi), 900) !!}</p>
+            <div x-data="{ open: false }" class="md:col-span-2 border p-4 bg-[#f6ecd0] cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                <div @click="open = true" class="flex flex-col sm:flex-row h-full">
+                    <div class="w-full sm:w-1/2 sm:pr-3 mb-3 sm:mb-0">
+                        <h3 class="font-bold text-sm sm:text-base">{{ $berita[1]->judul }}</h3>
+                        <p class="text-sm text-gray-500">{{ \Carbon\Carbon::parse($berita[1]->tanggal)->translatedFormat('d F Y') }}</p>
+                        <p class="text-xs text-gray-700 mt-1 line-clamp-4">{!! Str::limit(strip_tags($berita[1]->isi), 900) !!}</p>
+                    </div>
+                    <div class="w-full sm:w-1/2">
+                        <img src="{{ asset('storage/' . $berita[1]->foto) }}" alt="{{ $berita[1]->judul }}" class="h-32 sm:h-full w-full object-cover rounded">
+                    </div>
                 </div>
-                <div class="w-1/2">
-                    <img src="{{ asset('storage/' . $berita[1]->foto) }}" alt="{{ $berita[1]->judul }}" class="h-full w-full object-cover rounded">
+
+                <!-- Large News Popup Modal -->
+                <div 
+                    x-show="open" 
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-90"
+                    class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center p-2 sm:p-4 overflow-y-auto"
+                    style="display: none;"
+                    @click.self="open = false">
+                    <div class="bg-white w-full max-w-4xl rounded-lg shadow-2xl relative my-4 sm:my-8 min-h-[80vh] max-h-none flex flex-col">
+                        <div class="flex justify-between items-center p-4 border-b sticky top-0 bg-white z-10 rounded-t-lg">
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 pr-8 line-clamp-2">{{ $berita[1]->judul }}</h3>
+                            <button @click="open = false" class="text-3xl text-gray-600 hover:text-red-600 transition-colors duration-200 absolute top-3 right-4 w-8 h-8 flex items-center justify-center">&times;</button>
+                        </div>
+                        <div class="overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                            <img src="{{ asset('storage/' . $berita[1]->foto) }}" class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover" alt="{{ $berita[1]->judul }}">
+                            <div class="p-4 sm:p-6 lg:p-8">
+                                <p class="text-sm text-gray-500 mb-6 font-medium">{{ \Carbon\Carbon::parse($berita[1]->tanggal)->translatedFormat('d F Y') }}</p>
+                                <div class="text-gray-700 leading-relaxed text-sm sm:text-base lg:text-lg space-y-4">
+                                    {!! nl2br(e($berita[1]->isi)) !!}
+                                </div>
+                            </div>
+                            <div class="h-8"></div> <!-- Extra space at bottom -->
+                        </div>
+                    </div>
                 </div>
             </div>
             @endif
 
-            {{-- 4 Small News Items with Popup --}}
+            {{-- Small News Items with Enhanced Popup --}}
             @foreach ($berita->skip(2)->take(4) as $item)
-            <div x-data="{ open: false }" class="relative border p-4 bg-[#f6ecd0] reveal opacity-0 translate-y-8 transition-all duration-700">
-                <div @click="open = true" class="cursor-pointer">
+            <div x-data="{ open: false }" class="relative border p-4 bg-[#f6ecd0] reveal opacity-0 translate-y-8 transition-all duration-700 hover:shadow-lg cursor-pointer">
+                <div @click="open = true">
                     <div class="h-32 mb-2">
                         <img src="{{ asset('storage/' . $item->foto) }}" alt="{{ $item->judul }}" class="w-full h-full object-cover rounded">
                     </div>
@@ -46,19 +130,32 @@
                     <p class="text-xs text-gray-700 mt-1 line-clamp-3">{!! Str::limit(strip_tags($item->isi), 60) !!}</p>
                 </div>
 
-                <!-- Popup Modal -->
+                <!-- Enhanced Popup Modal -->
                 <div 
                     x-show="open" 
-                    x-transition 
-                    class="fixed inset-0 bg-black bg-opacity-20 z-50 flex items-center justify-center px-4"
-                    style="display: none;">
-                    <div class="bg-amber-100 w-full max-w-2xl p-6 rounded-lg shadow-xl relative max-h-[90vh] overflow-y-auto">
-                        <button @click="open = false" class="absolute top-2 right-3 text-xl text-gray-600 hover:text-red-600">&times;</button>
-                        <img src="{{ asset('storage/' . $item->foto) }}" class="mb-4 w-full h-64 object-cover rounded" alt="{{ $item->judul }}">
-                        <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ $item->judul }}</h3>
-                        <p class="text-sm text-gray-500 mb-4">{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
-                        <div class="text-gray-700 leading-relaxed">
-                            {!! nl2br(e($item->isi)) !!}
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-90"
+                    class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center p-2 sm:p-4 overflow-y-auto"
+                    style="display: none;"
+                    @click.self="open = false">
+                    <div class="bg-white w-full max-w-4xl rounded-lg shadow-2xl relative my-4 sm:my-8 min-h-[80vh] max-h-none flex flex-col">
+                        <div class="flex justify-between items-center p-4 border-b sticky top-0 bg-white z-10 rounded-t-lg">
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 pr-8 line-clamp-2">{{ $item->judul }}</h3>
+                            <button @click="open = false" class="text-3xl text-gray-600 hover:text-red-600 transition-colors duration-200 absolute top-3 right-4 w-8 h-8 flex items-center justify-center">&times;</button>
+                        </div>
+                        <div class="overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                            <img src="{{ asset('storage/' . $item->foto) }}" class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover" alt="{{ $item->judul }}">
+                            <div class="p-4 sm:p-6 lg:p-8">
+                                <p class="text-sm text-gray-500 mb-6 font-medium">{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
+                                <div class="text-gray-700 leading-relaxed text-sm sm:text-base lg:text-lg space-y-4">
+                                    {!! nl2br(e($item->isi)) !!}
+                                </div>
+                            </div>
+                            <div class="h-8"></div> <!-- Extra space at bottom -->
                         </div>
                     </div>
                 </div>
@@ -66,26 +163,90 @@
             @endforeach
         </div>
 
-        {{-- Bottom List Section --}}
+        {{-- Bottom List Section with Popups --}}
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-start reveal opacity-0 translate-y-8 transition-all duration-700">
             @if ($berita->count() > 6)
-            <div class="md:col-span-1 border bg-white p-4">
-                <div class="h-40 mb-4">
-                    <img src="{{ asset('storage/' . $berita[6]->foto) }}" alt="{{ $berita[6]->judul }}" class="w-full h-full object-cover rounded">
+            <div x-data="{ open: false }" class="md:col-span-1 border bg-[#f6ecd0] p-4 cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                <div @click="open = true">
+                    <div class="h-40 mb-4">
+                        <img src="{{ asset('storage/' . $berita[6]->foto) }}" alt="{{ $berita[6]->judul }}" class="w-full h-full object-cover rounded">
+                    </div>
+                    <div class="text-sm text-gray-700">
+                        <p class="mb-2 text-xs text-gray-500">{{ \Carbon\Carbon::parse($berita[6]->tanggal)->translatedFormat('d F Y') }}</p>
+                        <h4 class="font-semibold">{{ $berita[6]->judul }}</h4>
+                        <p class="text-xs mt-1 line-clamp-2">{!! Str::limit(strip_tags($berita[6]->isi), 80) !!}</p>
+                    </div>
                 </div>
-                <div class="text-sm text-gray-700">
-                    <p class="mb-2 text-xs text-gray-500">{{ \Carbon\Carbon::parse($berita[6]->tanggal)->translatedFormat('d F Y') }}</p>
-                    <h4 class="font-semibold">{{ $berita[6]->judul }}</h4>
-                    <p class="text-xs mt-1 line-clamp-2">{!! Str::limit(strip_tags($berita[6]->isi), 80) !!}</p>
+
+                <!-- Bottom News Popup Modal -->
+                <div 
+                    x-show="open" 
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-90"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100 scale-100"
+                    x-transition:leave-end="opacity-0 scale-90"
+                    class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center p-2 sm:p-4 overflow-y-auto"
+                    style="display: none;"
+                    @click.self="open = false">
+                    <div class="bg-white w-full max-w-4xl rounded-lg shadow-2xl relative my-4 sm:my-8 min-h-[80vh] max-h-none flex flex-col">
+                        <div class="flex justify-between items-center p-4 border-b sticky top-0 bg-white z-10 rounded-t-lg">
+                            <h3 class="text-lg sm:text-xl font-bold text-gray-800 pr-8 line-clamp-2">{{ $berita[6]->judul }}</h3>
+                            <button @click="open = false" class="text-3xl text-gray-600 hover:text-red-600 transition-colors duration-200 absolute top-3 right-4 w-8 h-8 flex items-center justify-center">&times;</button>
+                        </div>
+                        <div class="overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                            <img src="{{ asset('storage/' . $berita[6]->foto) }}" class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover" alt="{{ $berita[6]->judul }}">
+                            <div class="p-4 sm:p-6 lg:p-8">
+                                <p class="text-sm text-gray-500 mb-6 font-medium">{{ \Carbon\Carbon::parse($berita[6]->tanggal)->translatedFormat('d F Y') }}</p>
+                                <div class="text-gray-700 leading-relaxed text-sm sm:text-base lg:text-lg space-y-4">
+                                    {!! nl2br(e($berita[6]->isi)) !!}
+                                </div>
+                            </div>
+                            <div class="h-8"></div> <!-- Extra space at bottom -->
+                        </div>
+                    </div>
                 </div>
             </div>
             @endif
 
             <div class="md:col-span-2 flex flex-col gap-4">
                 @foreach ($berita->skip(7)->take(3) as $item)
-                <div class="text-sm border-b pb-2">
-                    <p class="text-xs text-gray-500">{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
-                    <p class="font-medium">{{ $item->judul }}</p>
+                <div x-data="{ open: false }" class="text-sm border-b pb-2 cursor-pointer hover:bg-gray-50 p-2 rounded transition-colors duration-200">
+                    <div @click="open = true">
+                        <p class="text-xs text-gray-500">{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
+                        <p class="font-medium">{{ $item->judul }}</p>
+                    </div>
+
+                    <!-- List Item Popup Modal -->
+                    <div 
+                        x-show="open" 
+                        x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 scale-90"
+                        x-transition:enter-end="opacity-100 scale-100"
+                        x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100 scale-100"
+                        x-transition:leave-end="opacity-0 scale-90"
+                        class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-center p-2 sm:p-4 overflow-y-auto"
+                        style="display: none;"
+                        @click.self="open = false">
+                        <div class="bg-white w-full max-w-4xl rounded-lg shadow-2xl relative my-4 sm:my-8 min-h-[80vh] max-h-none flex flex-col">
+                            <div class="flex justify-between items-center p-4 border-b sticky top-0 bg-white z-10 rounded-t-lg">
+                                <h3 class="text-lg sm:text-xl font-bold text-gray-800 pr-8 line-clamp-2">{{ $item->judul }}</h3>
+                                <button @click="open = false" class="text-3xl text-gray-600 hover:text-red-600 transition-colors duration-200 absolute top-3 right-4 w-8 h-8 flex items-center justify-center">&times;</button>
+                            </div>
+                            <div class="overflow-y-auto flex-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+                                <img src="{{ asset('storage/' . $item->foto) }}" class="w-full h-48 sm:h-64 md:h-80 lg:h-96 object-cover" alt="{{ $item->judul }}">
+                                <div class="p-4 sm:p-6 lg:p-8">
+                                    <p class="text-sm text-gray-500 mb-6 font-medium">{{ \Carbon\Carbon::parse($item->tanggal)->translatedFormat('d F Y') }}</p>
+                                    <div class="text-gray-700 leading-relaxed text-sm sm:text-base lg:text-lg space-y-4">
+                                        {!! nl2br(e($item->isi)) !!}
+                                    </div>
+                                </div>
+                                <div class="h-8"></div> <!-- Extra space at bottom -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 @endforeach
             </div>
@@ -116,6 +277,55 @@
     document.addEventListener('DOMContentLoaded', () => {
         revealOnScroll();
         window.addEventListener('scroll', revealOnScroll);
+        
+        // Prevent body scroll when modal is open
+        document.addEventListener('alpine:init', () => {
+            Alpine.magic('preventScroll', () => {
+                return {
+                    disable() {
+                        document.body.style.overflow = 'hidden';
+                        document.body.style.paddingRight = '15px'; // Prevent layout shift
+                    },
+                    enable() {
+                        document.body.style.overflow = '';
+                        document.body.style.paddingRight = '';
+                    }
+                }
+            });
+        });
+
+        // Add smooth scrolling behavior to all popups
+        const style = document.createElement('style');
+        style.textContent = `
+            .scrollbar-thin {
+                scrollbar-width: thin;
+                scrollbar-color: #d1d5db #f3f4f6;
+            }
+            .scrollbar-thin::-webkit-scrollbar {
+                width: 8px;
+            }
+            .scrollbar-thin::-webkit-scrollbar-track {
+                background: #f3f4f6;
+                border-radius: 4px;
+            }
+            .scrollbar-thin::-webkit-scrollbar-thumb {
+                background: #d1d5db;
+                border-radius: 4px;
+            }
+            .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+                background: #9ca3af;
+            }
+            /* Smooth scroll behavior */
+            html {
+                scroll-behavior: smooth;
+            }
+            /* Modal scroll improvements */
+            .modal-content {
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch;
+            }
+        `;
+        document.head.appendChild(style);
     });
 
     // Tombol Carousel ← →
@@ -137,5 +347,17 @@
 
     document.querySelectorAll('a, button').forEach(el => {
         el.classList.add('transition', 'duration-300', 'ease-in-out');
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            // This will close any open Alpine.js modals
+            document.querySelectorAll('[x-data]').forEach(el => {
+                if (el.__x && el.__x.$data.open) {
+                    el.__x.$data.open = false;
+                }
+            });
+        }
     });
 </script>

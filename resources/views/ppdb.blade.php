@@ -138,7 +138,7 @@
     
     
     <!-- News & Updates -->
-    <section id="berita" class="py-12 px-24">
+    <section id="berita" class="py-12 mx-auto">
         <div class="container mx-auto reveal opacity-0 translate-y-8 transition-all duration-700">
             <h2 class="text-2xl font-bold mb-6">News & Updates</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
